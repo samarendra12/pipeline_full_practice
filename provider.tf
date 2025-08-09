@@ -3,14 +3,13 @@ terraform {
    azurerm = {
    source = "hashicorp/azurerm"
    version = "4.38.1"
-
    }
+}
 backend "azurerm" {
 resource_group_name = "sagar"
 storage_account_name = "420420"
 container_name = "gautam"
 key = "terraform.tfstate"
-}
 }
 
 provider "azurerm" {
