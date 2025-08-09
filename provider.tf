@@ -7,10 +7,10 @@ terraform {
 }
 
 backend "azurerm" {
-  resource_group_name = "sagar"
-  storage_account_name = "420420"
-  container_name = "gautam"
-   key = "terraform.tfstate"
+resource_group_name = "sagar"
+storage_account_name = "420420"
+container_name = "gautam"
+key = "terraform.tfstate"
  }
 }
 
