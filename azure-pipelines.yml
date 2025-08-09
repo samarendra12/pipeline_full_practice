@@ -16,7 +16,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/pipeline_full_practice'
+    workingDirectory: $(System.DefaultWorkingDirectory)
     backendServiceArm: 'samar_serviceconnection'
     backendAzureRmResourceGroupName: 'sagar'
     backendAzureRmStorageAccountName: '420420'
