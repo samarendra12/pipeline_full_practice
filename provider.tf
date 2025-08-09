@@ -5,7 +5,12 @@ terraform {
    version = "4.38.1"
 
    }
- }
+backend "azurerm" {
+resource_group_name = "sagar"
+storage_account_name = "420420"
+containe_name = "gautam"
+key = "terraform.tfstate"
+}
 }
 
 provider "azurerm" {
