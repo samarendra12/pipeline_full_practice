@@ -1,18 +1,19 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger: none
-
-
+trigger: 
+ branches:
+   include:
+     - feature/*
+     - main
+   
 pool: parash_pool
+
+
 steps:
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
 
 - task: TerraformTask@5
+  displayName: terraform init
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -23,3 +24,22 @@ steps:
     backendAzureRmContainerName: 'gautam'
     backendAzureRmKey: 'terraform.tfstate'
 
+- task: TerraformTask@5
+  displayName: terraform validate
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+
+- task: TerraformTask@5
+  displayName: terraform plan
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'samar_serviceconnection'
+
+- task: TerraformTask@5
+  displayName: terraform apply
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    environmentServiceNameAzureRM: 'samar_serviceconnection'
