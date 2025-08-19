@@ -20,6 +20,6 @@ provider "azurerm" {
   }  
 
 resource "azurerm_resource_group" "group_rp" {
-    name = "pipeline_rg"
+    name = "ajay_rg"
     location = "east us"
 }
