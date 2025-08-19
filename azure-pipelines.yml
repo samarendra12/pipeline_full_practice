@@ -28,7 +28,6 @@ steps:
     provider: 'azurerm'
     command: 'validate'
 
-     - 
 - task: TerraformTask@5
   displayName: terraform plan
   inputs:
