@@ -4,4 +4,5 @@ resource "azurerm_storage_account" "Parash" {
     resource_group_name = "ajay_rg"
     account_tier = "Standard"
     account_replication_type = "GRS"
+
 }
