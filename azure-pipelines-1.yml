@@ -1,0 +1,50 @@
+trigger:
+  - main  
+pool: group_agent_pool
+
+variables:
+- name: provider 
+  value: azurerm 
+- name: environmentServiceNameAzureRM
+  value: group_sc
+  
+steps:
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+
+- task: TerraformTask@5
+  displayName: terraform init
+  inputs:
+    provider: ${{ variables.provider }}
+    command: 'init'
+    backendServiceArm: 'group_sc'
+    backendAzureRmStorageAccountName: '420420'
+    backendAzureRmContainerName: 'gautam'
+    backendAzureRmKey: 'parash.tfstate'
+
+- task: TerraformTask@5
+  displayName: terraform validate
+  inputs:
+    provider: ${{ variables.provider }}
+    command: 'validate'
+
+- task: TerraformTask@5
+  displayName: terraform plan
+  inputs:
+    provider: ${{ variables.provider }}
+    command: 'plan'
+    environmentServiceNameAzureRM: ${{ variables.environmentServiceNameAzureRM }}
+
+- task: TerraformTask@5
+  displayName: terraform apply
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+  inputs:
+    provider: ${{ variables.provider }}
+    command: 'apply'
+    environmentServiceNameAzureRM: ${{ variables.environmentServiceNameAzureRM }}
+ 
+
+
+
+
